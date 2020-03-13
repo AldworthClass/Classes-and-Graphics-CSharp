@@ -1,6 +1,6 @@
 ﻿namespace Classes_and_Graphics
 {
-    partial class Form1
+    partial class FormGameWindow
     {
         /// <summary>
         /// Required designer variable.

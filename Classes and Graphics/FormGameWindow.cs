@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Classes_and_Graphics
 {
-    public partial class Form1 : Form
+    public partial class FormGameWindow : Form
     {
-        public Form1()
+        public FormGameWindow()
         {
             InitializeComponent();
         }
