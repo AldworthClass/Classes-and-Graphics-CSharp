@@ -12,9 +12,60 @@ namespace Classes_and_Graphics
 {
     public partial class FormGameWindow : Form
     {
+        Random random = new Random();
+        Point turret, shot;
+        Brush brush = new SolidBrush(Color.Black);
+        Pen lazer = new Pen(Color.Red, 2);
+        Graphics canvas;
+        List<Target> targets = new List<Target>();
         public FormGameWindow()
         {
             InitializeComponent();
+        }
+
+        private void FormGameWindow_Paint(object sender, PaintEventArgs e)
+        {
+            canvas = e.Graphics;
+            foreach (Target target in targets)
+                target.draw(canvas);
+            canvas.FillEllipse(brush, this.ClientSize.Width / 2 - 5, this.ClientSize.Height - 5, 10, 10);
+            canvas.DrawLine(lazer, shot, turret);
+        }
+
+        private void FormGameWindow_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            targets.Add(new Target(new Point(100, 100), 40));
+            targets.Add(new Target(new Point(50, 50)));
+            for (int i = 0; i < 5; i++)
+                targets.Add(new Target());
+            turret = new Point(this.ClientSize.Width / 2, this.ClientSize.Height);
+            shot = turret;
+        }
+
+        private void GameTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (Target target in targets)
+                target.move(this.ClientSize);
+            this.Invalidate();
+            
+        }
+
+        private void FormGameWindow_MouseUp(object sender, MouseEventArgs e)
+        {
+            shot = turret;
+        }
+
+        private void FormGameWindow_MouseDown(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < targets.Count; i++)
+                if (targets[i].Hit(e.Location))
+                {
+                    targets.RemoveAt(i);
+                    i--;
+                }
+            shot = e.Location;
+
         }
     }
 }

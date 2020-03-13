@@ -28,20 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // Form1
+            // GameTimer
+            // 
+            this.GameTimer.Enabled = true;
+            this.GameTimer.Interval = 10;
+            this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
+            // 
+            // FormGameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(534, 461);
+            this.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.DoubleBuffered = true;
+            this.Name = "FormGameWindow";
             this.Text = "Mini Game";
+            this.Load += new System.EventHandler(this.FormGameWindow_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormGameWindow_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormGameWindow_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormGameWindow_MouseUp);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer GameTimer;
     }
 }
 
