@@ -18,6 +18,7 @@ namespace Classes_and_Graphics
         Pen lazer = new Pen(Color.Red, 2);
         Graphics canvas;
         List<Target> targets = new List<Target>();
+        int score;
         public FormGameWindow()
         {
             InitializeComponent();
@@ -26,9 +27,14 @@ namespace Classes_and_Graphics
         private void FormGameWindow_Paint(object sender, PaintEventArgs e)
         {
             canvas = e.Graphics;
+
+            //Draws Target
             foreach (Target target in targets)
                 target.draw(canvas);
+            
+            //Draws Turret
             canvas.FillEllipse(brush, this.ClientSize.Width / 2 - 5, this.ClientSize.Height - 5, 10, 10);
+            //Draws shot Lazer
             canvas.DrawLine(lazer, shot, turret);
         }
 
@@ -61,6 +67,8 @@ namespace Classes_and_Graphics
             for (int i = 0; i < targets.Count; i++)
                 if (targets[i].Hit(e.Location))
                 {
+                    score += 1;
+                    lblScore.Text = "Score: " + score;
                     targets.RemoveAt(i);
                     i--;
                 }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -38,11 +39,21 @@
             this.GameTimer.Interval = 10;
             this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
             // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Location = new System.Drawing.Point(13, 13);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(47, 13);
+            this.lblScore.TabIndex = 0;
+            this.lblScore.Text = "Score: 0";
+            // 
             // FormGameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 461);
+            this.Controls.Add(this.lblScore);
             this.Cursor = System.Windows.Forms.Cursors.Cross;
             this.DoubleBuffered = true;
             this.Name = "FormGameWindow";
@@ -52,12 +63,14 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormGameWindow_MouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormGameWindow_MouseUp);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Timer GameTimer;
+        private System.Windows.Forms.Label lblScore;
     }
 }
 
