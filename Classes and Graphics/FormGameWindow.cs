@@ -19,6 +19,8 @@ namespace Classes_and_Graphics
         Graphics canvas;
         List<Target> targets = new List<Target>();
         int score;
+        int shotTime;
+        bool shooting;
         public FormGameWindow()
         {
             InitializeComponent();
@@ -40,6 +42,9 @@ namespace Classes_and_Graphics
 
         private void FormGameWindow_Load(object sender, EventArgs e)
         {
+            this.Cursor = new Cursor(Properties.Resources.crosshair.GetHicon());
+            shooting = false;
+            shotTime = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             targets.Add(new Target(new Point(100, 100), 40));
             targets.Add(new Target(new Point(50, 50)));
@@ -51,19 +56,33 @@ namespace Classes_and_Graphics
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
+            if (shooting)
+            {
+                shotTime += 1;
+                if (shotTime == 10)
+                {
+                    shooting = false;
+                    shot = turret;
+                    shotTime = 0;
+                }
+                    
+            }
+
+
             foreach (Target target in targets)
                 target.move(this.ClientSize);
             this.Invalidate();
-            
         }
 
         private void FormGameWindow_MouseUp(object sender, MouseEventArgs e)
         {
             shot = turret;
+            shooting = false;
         }
 
         private void FormGameWindow_MouseDown(object sender, MouseEventArgs e)
         {
+            shooting = true;
             for (int i = 0; i < targets.Count; i++)
                 if (targets[i].Hit(e.Location))
                 {
