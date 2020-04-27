@@ -47,10 +47,14 @@ namespace Classes_and_Graphics
             shooting = false;
             shotTime = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            targets.Add(new CircleTarget(new Point(100, 100), 40));
-            targets.Add(new CircleTarget(new Point(50, 50)));
-            for (int i = 0; i < 5; i++)
-                targets.Add(new CircleTarget());
+            targets.Add(new CircleTarget(new Point(100, 100), 40, this.ClientSize));
+            targets.Add(new CircleTarget(new Point(50, 50), this.ClientSize));
+            for (int i = 0; i < 15; i++)
+            {
+                targets.Add(new CircleTarget(this.ClientSize));
+                if (i %2 == 0)
+                    targets.Add(new SquareTarget(this.ClientSize));
+            }    
             turret = new Point(this.ClientSize.Width / 2, this.ClientSize.Height);
             shot = turret;
         }
@@ -65,13 +69,11 @@ namespace Classes_and_Graphics
                     shooting = false;
                     shot = turret;
                     shotTime = 0;
-                }
-                    
+                }                   
             }
 
             foreach (Target target in targets)
-                target.Move(this.ClientSize);
-
+                target.Move();
             this.Invalidate();  // Calls Paint() which calls Target Draw()
         }
 

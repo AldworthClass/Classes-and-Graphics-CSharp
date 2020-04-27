@@ -9,42 +9,44 @@ namespace Classes_and_Graphics
 {
     class CircleTarget : Target
     {
-        private static Random random = new Random();
         private Point location;
         private int radius;
         private SolidBrush fill;
         private Pen outline;
         private int hSpeed;
         private int vSpeed;
+        private Size canvasSize;
 
         // Constructors
 
         // Random Location and Size radius from 5-10 
-        public CircleTarget()
+        public CircleTarget(Size size)
         {
-
-            this.radius = random.Next(5, 10);
-            this.location = new Point(random.Next(1 + radius, 530 - radius), random.Next(1 + radius, 490 - radius));
+            canvasSize = size;
+            this.radius = random.Next(10, 20);
+            this.location = new Point(random.Next(1 + radius, size.Width - radius), random.Next(1 + radius, size.Height - radius));
             fill = new SolidBrush(Color.Red);
             NewSpeed();
         }
 
         // Location and Size Provided
-        public CircleTarget(Point location, int radius)
+        public CircleTarget(Point location, int radius, Size size)
         {
             this.location = location;
             this.radius = radius;
+            canvasSize = size;
             fill = new SolidBrush(Color.Red);
             NewSpeed();
         }
 
         // Location provided, random size from 10-25
-        public CircleTarget(Point location)
+        public CircleTarget(Point location, Size size)
         {
             this.location = location;
             this.radius = random.Next(10, 26);
             fill = new SolidBrush(Color.Red);
             NewSpeed();
+            canvasSize = size;
         }
 
        
@@ -64,7 +66,7 @@ namespace Classes_and_Graphics
         {
             get
             {
-                return VSpeed;
+                return vSpeed;
             }
             set
             {
@@ -78,17 +80,16 @@ namespace Classes_and_Graphics
             do
             {
                 hSpeed = random.Next(-3, 3);
-            } while (hSpeed == 0);
-            do
-            {
                 vSpeed = random.Next(-3, 3);
-            } while (vSpeed == 0);
+
+            } while (hSpeed == 0 && vSpeed == 0);
+            
 
         }
+        
 
-
-        override
-        public Boolean Hit(Point shot)
+        // Indicated whether provided point hits target
+        public override Boolean Hit(Point shot)
         {
             Console.WriteLine(MyMath.Distance(shot, location));
             Console.WriteLine();
@@ -98,8 +99,8 @@ namespace Classes_and_Graphics
         }
 
 
-        override
-        public void Move(Size canvasSize)
+        // Moves target to a valid location
+        public override void Move()
         {
             location.X += hSpeed;
             location.Y += vSpeed;
@@ -109,8 +110,8 @@ namespace Classes_and_Graphics
                 vSpeed *= -1;
         }
 
-        override
-        public void Draw(Graphics graphics)
+        //Draws the shape
+        public override void Draw(Graphics graphics)
         {
             graphics.FillEllipse(fill,location.X-radius, location.Y-radius, radius*2, radius*2);
         }

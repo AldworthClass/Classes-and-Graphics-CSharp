@@ -9,8 +9,8 @@ namespace Classes_and_Graphics
 {
     abstract class Target
     {
-        
-        public abstract void Move(Size canvasSize);
+        protected static Random random = new Random();
+        public abstract void Move();
 
         public abstract Boolean Hit(Point shot);
 
