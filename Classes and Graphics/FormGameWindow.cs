@@ -21,6 +21,7 @@ namespace Classes_and_Graphics
         int score;
         int shotTime;
         bool shooting;
+
         public FormGameWindow()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace Classes_and_Graphics
 
             //Draws Target
             foreach (Target target in targets)
-                target.draw(canvas);
+                target.Draw(canvas);
             
             //Draws Turret
             canvas.FillEllipse(brush, this.ClientSize.Width / 2 - 5, this.ClientSize.Height - 5, 10, 10);
@@ -46,10 +47,10 @@ namespace Classes_and_Graphics
             shooting = false;
             shotTime = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            targets.Add(new Target(new Point(100, 100), 40));
-            targets.Add(new Target(new Point(50, 50)));
+            targets.Add(new CircleTarget(new Point(100, 100), 40));
+            targets.Add(new CircleTarget(new Point(50, 50)));
             for (int i = 0; i < 5; i++)
-                targets.Add(new Target());
+                targets.Add(new CircleTarget());
             turret = new Point(this.ClientSize.Width / 2, this.ClientSize.Height);
             shot = turret;
         }
@@ -68,10 +69,10 @@ namespace Classes_and_Graphics
                     
             }
 
-
             foreach (Target target in targets)
-                target.move(this.ClientSize);
-            this.Invalidate();
+                target.Move(this.ClientSize);
+
+            this.Invalidate();  // Calls Paint() which calls Target Draw()
         }
 
         private void FormGameWindow_MouseUp(object sender, MouseEventArgs e)
