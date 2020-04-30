@@ -21,6 +21,8 @@ namespace Classes_and_Graphics
         int score;
         int shotTime;
         bool shooting;
+        int seconds;
+        int timerCount;
 
         public FormGameWindow()
         {
@@ -51,12 +53,17 @@ namespace Classes_and_Graphics
             targets.Add(new CircleTarget(new Point(50, 50), this.ClientSize));
             for (int i = 0; i < 15; i++)
             {
-                targets.Add(new CircleTarget(this.ClientSize));
-                if (i %2 == 0)
+                if (i % 3 == 1)
+                    targets.Add(new CircleTarget(this.ClientSize));
+                else if (i % 3 == 0)
                     targets.Add(new SquareTarget(this.ClientSize));
+                else if (i % 3 == 2)
+                    targets.Add(new RandomTarget(this.ClientSize));
             }    
             turret = new Point(this.ClientSize.Width / 2, this.ClientSize.Height);
             shot = turret;
+            seconds = 0;
+            timerCount = 0;
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
@@ -75,6 +82,15 @@ namespace Classes_and_Graphics
             foreach (Target target in targets)
                 target.Move();
             this.Invalidate();  // Calls Paint() which calls Target Draw()
+
+
+            //Keeps track of time
+            timerCount += 1;
+            if (timerCount == 100)
+            {
+                timerCount = 0;
+                seconds += 1;
+            }
         }
 
         private void FormGameWindow_MouseUp(object sender, MouseEventArgs e)
@@ -93,9 +109,18 @@ namespace Classes_and_Graphics
                     lblScore.Text = "Score: " + score;
                     targets.RemoveAt(i);
                     i--;
+                    if (targets.Count == 0)
+                        GameOver();
+                        
                 }
             shot = e.Location;
 
+        }
+        private void GameOver()
+        {
+            GameTimer.Enabled = false;
+            lblGameOver.Visible = true;
+            lblGameOver.Text = "Great job, it took you " + seconds + " seconds.";
         }
     }
 }

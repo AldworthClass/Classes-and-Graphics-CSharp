@@ -11,7 +11,7 @@ namespace Classes_and_Graphics
     {
         private Point location;
         private int radius;
-        private SolidBrush fill;
+        private Brush fill;
         private Pen outline;
         private int hSpeed;
         private int vSpeed;

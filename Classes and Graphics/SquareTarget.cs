@@ -16,7 +16,7 @@ namespace Classes_and_Graphics
         private int hSpeed;
         private int vSpeed;
         private int moveCount;
-        HatchBrush brush;
+        Brush brush;
 
 
         public SquareTarget(Size size)
