@@ -88,5 +88,8 @@
   <ItemGroup>
     <None Include="Resources\crosshair.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\space-background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

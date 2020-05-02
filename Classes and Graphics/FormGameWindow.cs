@@ -110,8 +110,11 @@ namespace Classes_and_Graphics
                     targets.RemoveAt(i);
                     i--;
                     if (targets.Count == 0)
+                    {
                         GameOver();
-                        
+                        Invalidate();
+                        return;
+                    }      
                 }
             shot = e.Location;
 
@@ -119,6 +122,7 @@ namespace Classes_and_Graphics
         private void GameOver()
         {
             GameTimer.Enabled = false;
+            shot = turret;
             lblGameOver.Visible = true;
             lblGameOver.Text = "Great job, it took you " + seconds + " seconds.";
         }

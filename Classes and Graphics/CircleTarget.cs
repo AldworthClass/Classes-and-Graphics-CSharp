@@ -82,9 +82,7 @@ namespace Classes_and_Graphics
                 hSpeed = random.Next(-3, 3);
                 vSpeed = random.Next(-3, 3);
 
-            } while (hSpeed == 0 && vSpeed == 0);
-            
-
+            } while (hSpeed == 0 && vSpeed == 0); 
         }
         
 
@@ -115,8 +113,5 @@ namespace Classes_and_Graphics
         {
             graphics.FillEllipse(fill,location.X-radius, location.Y-radius, radius*2, radius*2);
         }
-
-        
-
     }
 }

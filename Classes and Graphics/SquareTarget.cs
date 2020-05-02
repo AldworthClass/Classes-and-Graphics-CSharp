@@ -23,8 +23,6 @@ namespace Classes_and_Graphics
         {
             int width = random.Next(20, 55);
             Random generator = new Random();
-            
-
             brush = new HatchBrush(HatchStyle.BackwardDiagonal, Color.Red, Color.Blue);
             moveCount = random.Next(50);
             do
@@ -90,8 +88,6 @@ namespace Classes_and_Graphics
                 vSpeed *= -1;
                 moveCount = 0;
             }
-
-
         }
 
         public override void Draw(Graphics graphics)

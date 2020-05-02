@@ -14,7 +14,6 @@ namespace Classes_and_Graphics
         private int movePoint;
         Brush brush;
 
-
         public RandomTarget(Size size)
         {
             brush = new SolidBrush(Color.Brown);
@@ -47,8 +46,7 @@ namespace Classes_and_Graphics
             {
                 newLocation();
                 movePoint = 0;
-            }
-                
+            }               
         }
     }
 }

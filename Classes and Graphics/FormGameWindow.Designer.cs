@@ -43,9 +43,12 @@
             // lblScore
             // 
             this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.Color.Yellow;
             this.lblScore.Location = new System.Drawing.Point(13, 13);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(47, 13);
+            this.lblScore.Size = new System.Drawing.Size(110, 29);
             this.lblScore.TabIndex = 0;
             this.lblScore.Text = "Score: 0";
             // 
@@ -53,7 +56,7 @@
             // 
             this.lblGameOver.AutoSize = true;
             this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGameOver.Location = new System.Drawing.Point(152, 104);
+            this.lblGameOver.Location = new System.Drawing.Point(13, 81);
             this.lblGameOver.Name = "lblGameOver";
             this.lblGameOver.Size = new System.Drawing.Size(0, 29);
             this.lblGameOver.TabIndex = 1;
@@ -63,6 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Classes_and_Graphics.Properties.Resources.space_background;
             this.ClientSize = new System.Drawing.Size(534, 461);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblScore);
